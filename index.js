@@ -23,17 +23,18 @@ bot.on('message', async message => {
 
     switch (command) {
       
-      
+      //default command explaining what the bot does.
       case 'kipp':
        let kipp = new MessageEmbed()
           .setTitle('KIPP')
           .setColor('BLUE')
           .setDescription('KIPP is a bot that is a part of the "Intersetellar trio". Each bot has their own uniqe features, just like KIPP. If you want more information, ping the bot devs.')
-          .setThumbnail('https://cdn.discordapp.com/attachments/570415505328832522/912451297637187614/IMG_D004FBF675BF-1.jpeg')
-          .setFooter(`Requested by: ${message.member ? message.member.displayName : message.author.username}`,message.author.displayAvatarURL())
-          ;
+          .setFooter(`Requested by: ${message.member ? message.member.displayName : message.author.username}`, message.author.displayAvatarURL())
         message.channel.send(kipp);
         break;
+    
+
+    //moderating command that clears specified value. works with numbers, and everything :trollface:
     case 'clear':
      if(!args[0]) return message.reply('Error. Please define how many messages you wanna delete, ***Ex: t!clear 10*** ')
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`You can't use this command.`);
@@ -43,38 +44,70 @@ bot.on('message', async message => {
 	.setColor('RED')
 	.setTitle('Deleted Messages')
 	.setDescription('Someone used t!clear')
-	.setThumbnail('https://i.imgur.com/gcElJpw.png')
+	.setThumbnail('https://onlinehelpguide.com/wp-content/uploads/2020/10/How-To-Delete-All-Messages-On-Discord.jpg')
 	.addField(message.author.username + ' deleted ' + args[0] + ' Messages')
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.member ? message.member.displayName : message.author.username}`, message.author.displayAvatarURL())
 
     message.channel.send(clearEmbed);
-    var deleteThisMany = ++args[0];
+    var deleteThisMany = ++args[0] + 1;
     message.channel.bulkDelete(deleteThisMany);
     break;
 
     
        
-      
+      //checks server connectivity
       case 'ping':
         let msg = await message.reply('Pinging...');
         await msg.edit(`PONG. Successful. Round trip was ${Date.now() - msg.createdTimestamp}ms.`)
         break;
       
+
+      //creeper
       case 'creeper':
         message.channel.send('Awwww Man.')
         break;  
 
-      
+      //SR2 dv map
+      case 'dvmap':
+      if(args[0]="sr2")  {      
+       let dvmap = new MessageEmbed()
+         .setTitle('Delta-V map for Simplerockets 2')
+         .setColor('BLUE')
+         .setImage('https://i.imgur.com/PV2YsUM.png')
+         .setFooter(`Requested by: ${message.member ? 
+         message.member.displayName : message.author.username}`, message.author.displayAvatarURL())
+         ;
+  
+        message.channel.send(dvmap);
+        break;
+}
+
+    else if(args[0]="ksp"){
+       let dvmapksp = new MessageEmbed()
+         .setTitle('Delta-V map for Kerbal Space Program')
+         .setColor('LIME')
+         .setImage('https://i.imgur.com/yO0bQax.png')
+         .setFooter(`Requested by: ${message.member ? 
+         message.member.displayName : message.author.username}`, message.author.displayAvatarURL())
+         ;
+
+         message.channel.send(dvmapksp);
+         break;
+    }
+        break;
        
         
 
+
+
+
+       //help command (probably should update this soon)
       case 'help':
         let embed = new MessageEmbed()
           .setTitle('HELP MENU')
           .setColor('BLUE')
-          .setFooter(`Requested by: ${message.member ? message.member.displayName : message.author.username}`,message.author.displayAvatarURL())
-          .setThumbnail(bot.user.displayAvatarURL());
+          .setFooter(`Requested by: ${message.member ? message.member.displayName : message.author.username}`, message.author.displayAvatarURL())
         if (!args[0])
           embed
             .setDescription(Object.keys(commands).map(command => `\`${command.padEnd(Object.keys(commands).reduce((a, b) => b.length > a.length ? b : a, '').length)}\` :: ${commands[command].description}`).join('\n'));
