@@ -4,12 +4,9 @@ module.exports = {
     format: 'help [command-name]'
   },
   'ping': {
-    description: 'Checks connectivity with discord\'s servers.',
+    description: 'Checks connectivity with the discord servers.',
     format: 'ping'
-  },
-  'creeper': {
-    description: 'Joke-command that responds with "Aww Man ironically."',
-    format: 'creeper'
+  
   },
   'kipp': { 
     description: 'Default command explaining what the bot does.',
@@ -23,4 +20,13 @@ module.exports = {
     description: 'Shows a Delta-V map for the KSP Kerbol System.',
     format: 'dvmapksp'
   },
+  'meme': { 
+    description: 'Gives you some dank memes stolen from reddit, if you are worthy to receive such dankness...',
+    format: 'meme'
+  },
+  'say': {
+    description: 'Do not tell anybody this exists',
+    format: 'say'
+  },
+
 }
